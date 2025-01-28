@@ -16,6 +16,7 @@ environment:
       env:
         branch: 'main'   
         ENV: 'lifecycle'
+        FALLBACK: '{{vignesh_internalHostname}}'
     
 services:
   - name: "backend-svc"
