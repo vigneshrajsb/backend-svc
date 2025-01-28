@@ -38,6 +38,7 @@ services:
           env:
             COMPONENT: "app"
             ENV: "lifecycle"
+            FALLBACK: '{{vignesh_internalHostname}}'
 
   - name: "backend-cache"
     helm:
