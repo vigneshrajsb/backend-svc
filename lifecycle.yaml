@@ -39,7 +39,11 @@ services:
             COMPONENT: "app"
             ENV: "lifecycle"
             FALLBACK: '{{vignesh_internalHostname}}'
-
+            BUILD_UUID: '{{vignesh_buildUUID}}'
+            URL: '{{vignesh_publicUrl}}'
+            SHA: '{{vignesh_sha}}'
+            BRANCH: '{{vignesh_branchName}}'
+            UUID: '{{vignesh_UUID}}'
   - name: "backend-cache"
     helm:
       repository: "vigneshrajsb/backend-svc"
