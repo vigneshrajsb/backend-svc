@@ -19,6 +19,7 @@ environment:
     
 services:
   - name: "backend-svc"
+    appShort: "jeffpoc"
     helm:
       repository: "vigneshrajsb/backend-svc"
       branchName: "main"
