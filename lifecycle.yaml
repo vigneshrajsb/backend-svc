@@ -30,6 +30,7 @@ services:
           - 'sysops/helm/lfc/service/grpc-service.yaml'
       docker:
         defaultTag: "main"
+        pipelineId: 'lifecycle/lc-test'
         app:
           dockerfilePath: "backend-svc/Dockerfile"
           ports:
