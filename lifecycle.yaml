@@ -4,6 +4,7 @@ version: '1.0.0'
 environment:
   autoDeploy: true
   defaultServices:
+    - name: 'build-test'
     - name: 'backend-cache'
     - name: 'backend-svc'
   webhooks:
@@ -18,6 +19,19 @@ environment:
         ENV: 'lifecycle'
     
 services:
+  - name: build-test
+    defaultUUID: good-dev-0
+    codefresh:
+      repository: 'vigneshrajsb/backend-svc'
+      branchName: 'main'
+      env:
+        BUILD_UUID: "{{buildUUID}}"
+      deploy:
+        pipelineId: '67d9f65e468c481cd6249780'
+        trigger: 'create'
+      destroy:
+        pipelineId: '67d9f81e10e1df90ca755d87'
+        trigger: 'cleanup'
   - name: "backend-svc"
     helm:
       repository: "vigneshrajsb/backend-svc"
