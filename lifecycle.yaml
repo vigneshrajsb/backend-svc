@@ -51,6 +51,7 @@ services:
           env:
             COMPONENT: "app"
             ENV: "lifecycle"
+            BUILD_TEST_VAR: '{{{build-test.buildOutput((?<=\\[id=).*(?=\\]))}}}'
 
   - name: "backend-cache"
     helm:
