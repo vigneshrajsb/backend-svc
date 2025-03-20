@@ -37,6 +37,7 @@ services:
           env:
             COMPONENT: "app"
             ENV: "lifecycle"
+            CACHE_HOST: "{{{backend-cache_internalHostname}}}"
 
   - name: "backend-cache"
     helm:
