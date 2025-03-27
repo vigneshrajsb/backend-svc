@@ -37,9 +37,14 @@ services:
           env:
             COMPONENT: "app"
             ENV: "lifecycle"
+            CACHE_SIMPLE: "{{{backend-cache_internalHostname}}}"
             CACHE_HOST: "{{{backend-cache_internalHostname}}}-master"
             CACHE_URL: "{{{backend-cache_internalHostname}}}:6379"
             CACHE_ME: "{{{backend-cache_internalHostname}}}-master:6379"
+            DEFAULT_SIMPLE: "{{{backend-cache_internalHostname}}}"
+            DEFAULT_HOST: "{{{backend-cache_internalHostname}}}-master"
+            DEFAULT_URL: "{{{backend-cache_internalHostname}}}:6379"
+            DEFAULT_ME: "{{{backend-cache_internalHostname}}}-master:6379"
 
   - name: "backend-cache"
     helm:
