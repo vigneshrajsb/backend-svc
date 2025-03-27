@@ -6,6 +6,8 @@ environment:
   defaultServices:
     - name: 'backend-cache'
     - name: 'backend-svc'
+  optionalServices:
+    - name: 'backend-optional-cache'
   webhooks:
     - state: 'deployed'
       type: 'codefresh'
@@ -45,8 +47,25 @@ services:
             DEFAULT_HOST: "{{{backend-default_internalHostname}}}-master"
             DEFAULT_URL: "{{{backend-default_internalHostname}}}:6379"
             DEFAULT_ME: "{{{backend-default_internalHostname}}}-master:6379"
+            OPT_CACHE_SIMPLE: "{{{backend-optional-cache_internalHostname}}}"
+            OPT_CACHE_HOST: "{{{backend-optional-cache_internalHostname}}}-master"
+            OPT_CACHE_URL: "{{{backend-optional-cache_internalHostname}}}:6379"
+            OPT_CACHE_ME: "{{{backend-optional-cache_internalHostname}}}-master:6379"
 
   - name: "backend-cache"
+    helm:
+      repository: "vigneshrajsb/backend-svc"
+      branchName: "main"
+      chart:
+        name: "redis"
+        version: 20.3.0
+        repoUrl: "https://charts.bitnami.com/bitnami"
+        values:
+          - "master.pdb.create=true"
+          - "master.pdb.minAvailable=50%"
+          - "master.count=2"
+
+  - name: "backend-optional-cache"
     helm:
       repository: "vigneshrajsb/backend-svc"
       branchName: "main"
