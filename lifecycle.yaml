@@ -51,7 +51,7 @@ services:
             OPT_CACHE_HOST: "{{{backend-optional-cache_internalHostname}}}-master"
             OPT_CACHE_URL: "{{{backend-optional-cache_internalHostname}}}:6379"
             OPT_CACHE_ME: "{{backend-optional-cache_internalHostname}}-master:6379"
-            TEST: "other",
+            TEST: "other"
             BUILD_UUID: '{{{backend-cache_buildUUID}}}'
             OPT_BUILD_UUID: '{{backend-optional-cache_buildUUID}}'
             PUBLIC_URL: '{{backend-cache_publicUrl}}'
