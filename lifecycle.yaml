@@ -62,4 +62,5 @@ services:
         repoUrl: 'https://localstack.github.io/helm-charts'
         version: '0.63.23'
         values:
-          - "test=true"
+          - 'sysops/helm/lifecycle/common.yaml'
+          - 'sysops/helm/lifecycle/lfc/localstack.yaml'
