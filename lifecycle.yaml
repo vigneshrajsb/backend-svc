@@ -6,6 +6,7 @@ environment:
   defaultServices:
     - name: 'backend-cache'
     - name: 'backend-svc'
+    - name: 'pyprc-s3'
   webhooks:
     - state: 'deployed'
       type: 'codefresh'
@@ -50,3 +51,15 @@ services:
           - "master.pdb.create=true"
           - "master.pdb.minAvailable=50%"
           - "master.count=2"
+
+  - name: 'pyprc-s3'
+    defaultUUID: 'good-dev-0'
+    helm:
+      repository: "vigneshrajsb/backend-svc"
+      branchName: "main"
+      chart:
+        name: 'localstack'
+        repoUrl: 'https://localstack.github.io/helm-charts'
+        version: '0.63.23'
+        values:
+          - "test=true"
