@@ -40,17 +40,24 @@ services:
             COMPONENT: "app"
             ENV: "lifecycle"
             CACHE_SIMPLE: "{{{backend-cache_internalHostname}}}"
-            CACHE_HOST: "{{{backend-cache_internalHostname}}}-master"
+            CACHE_HOST: "{{backend-cache_internalHostname}}-master"
             CACHE_URL: "{{{backend-cache_internalHostname}}}:6379"
             CACHE_ME: "{{{backend-cache_internalHostname}}}-master:6379"
             DEFAULT_SIMPLE: "{{{backend-default_internalHostname}}}"
             DEFAULT_HOST: "{{{backend-default_internalHostname}}}-master"
-            DEFAULT_URL: "{{{backend-default_internalHostname}}}:6379"
+            DEFAULT_URL: "{{backend-default_internalHostname}}:6379"
             DEFAULT_ME: "{{{backend-default_internalHostname}}}-master:6379"
             OPT_CACHE_SIMPLE: "{{{backend-optional-cache_internalHostname}}}"
             OPT_CACHE_HOST: "{{{backend-optional-cache_internalHostname}}}-master"
             OPT_CACHE_URL: "{{{backend-optional-cache_internalHostname}}}:6379"
-            OPT_CACHE_ME: "{{{backend-optional-cache_internalHostname}}}-master:6379"
+            OPT_CACHE_ME: "{{backend-optional-cache_internalHostname}}-master:6379"
+            TEST: "other",
+            BUILD_UUID: '{{{backend-cache_buildUUID}}}'
+            OPT_BUILD_UUID: '{{backend-optional-cache_buildUUID}}'
+            PUBLIC_URL: '{{backend-cache_publicUrl}}'
+            OPT_PUBLIC_URL: '{{{backend-optional-cache_publicUrl}}}'
+            UUID: '{{{ backend-cache_UUID }}}'
+            OPT_UUID: '{{{ backend-optional-cache_UUID }}}'
 
   - name: "backend-cache"
     helm:
