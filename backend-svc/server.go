@@ -26,7 +26,7 @@ func main() {
 
 	echo.RegisterSimpleServiceServer(s, &server{})
   reflection.Register(s)
-
+	log.Println("Vignesh was here!")
 	log.Println("Starting server on port :8080...")
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
