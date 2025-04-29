@@ -38,6 +38,27 @@ services:
             COMPONENT: "app"
             ENV: "lifecycle"
 
+  - name: "support-svc"
+    appShort: "jeffpoc"
+    helm:
+      repository: "vigneshrajsb/backend-svc"
+      branchName: "main"
+      grpc: true
+      chart:
+        name: 'goodrx-app'
+        valueFiles:
+          - 'sysops/helm/common.yaml'
+          - 'sysops/helm/lfc/service/grpc-service.yaml'
+      docker:
+        defaultTag: "main"
+        app:
+          dockerfilePath: "backend-svc/Dockerfile"
+          ports:
+            - 8080
+          env:
+            COMPONENT: "support"
+            ENV: "lifecycle"
+
   - name: "backend-cache"
     helm:
       repository: "vigneshrajsb/backend-svc"
