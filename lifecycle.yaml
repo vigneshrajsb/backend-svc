@@ -42,8 +42,8 @@ services:
         init:
           dockerfilePath: "backend-svc/Dockerfile"
           env:
-          INIT: "true"
-          SVC: "backend-svc"
+            INIT: "true"
+            SVC: "backend-svc"
 
   - name: "support-svc"
     appShort: "jeffpoc"
@@ -68,8 +68,8 @@ services:
         init:
           dockerfilePath: "backend-svc/Dockerfile"
           env:
-          INIT: "true"
-          SVC: "support-svc"
+            INIT: "true"
+            SVC: "support-svc"
 
   - name: "another-svc"
     helm:
@@ -94,8 +94,8 @@ services:
         init:
           dockerfilePath: "backend-svc/Dockerfile"
           env:
-          INIT: "true"
-          SVC: "another-svc"
+            INIT: "true"
+            SVC: "another-svc"
 
   - name: "backend-cache"
     helm:
