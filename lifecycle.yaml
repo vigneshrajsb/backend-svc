@@ -6,6 +6,7 @@ environment:
   defaultServices:
     - name: 'backend-cache'
     - name: 'backend-svc'
+    - name: 'support-svc'
   webhooks:
     - state: 'deployed'
       type: 'codefresh'
