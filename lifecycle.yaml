@@ -7,6 +7,7 @@ environment:
     - name: 'backend-cache'
     - name: 'backend-svc'
     - name: 'support-svc'
+    - name: 'another-svc'
   webhooks:
     - state: 'deployed'
       type: 'codefresh'
@@ -51,6 +52,27 @@ services:
           - 'sysops/helm/common.yaml'
           - 'sysops/helm/lfc/service/grpc-service.yaml'
       docker:
+        defaultTag: "main"
+        app:
+          dockerfilePath: "backend-svc/Dockerfile"
+          ports:
+            - 8080
+          env:
+            COMPONENT: "support"
+            ENV: "lifecycle"
+
+  - name: "another-svc"
+    helm:
+      repository: "vigneshrajsb/backend-svc"
+      branchName: "main"
+      grpc: true
+      chart:
+        name: 'goodrx-app'
+        valueFiles:
+          - 'sysops/helm/common.yaml'
+          - 'sysops/helm/lfc/service/grpc-service.yaml'
+      docker:
+        ecr: 'goodrx/afl/lfc'
         defaultTag: "main"
         app:
           dockerfilePath: "backend-svc/Dockerfile"
