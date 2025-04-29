@@ -39,6 +39,11 @@ services:
           env:
             COMPONENT: "app"
             ENV: "lifecycle"
+        init:
+          dockerfilePath: "backend-svc/Dockerfile"
+          env:
+          INIT: "true"
+          SVC: "backend-svc"
 
   - name: "support-svc"
     appShort: "jeffpoc"
@@ -60,6 +65,11 @@ services:
           env:
             COMPONENT: "support"
             ENV: "lifecycle"
+        init:
+          dockerfilePath: "backend-svc/Dockerfile"
+          env:
+          INIT: "true"
+          SVC: "support-svc"
 
   - name: "another-svc"
     helm:
@@ -81,6 +91,11 @@ services:
           env:
             COMPONENT: "support"
             ENV: "lifecycle"
+        init:
+          dockerfilePath: "backend-svc/Dockerfile"
+          env:
+          INIT: "true"
+          SVC: "another-svc"
 
   - name: "backend-cache"
     helm:
