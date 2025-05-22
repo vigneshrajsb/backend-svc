@@ -25,6 +25,25 @@ environment:
         branch: 'main'   
         ENV: 'lifecycle'
         NEW: 'true'
+    - state: 'deployed'
+      type: 'codefresh'
+      name: 'lfc: deployed 3'
+      description: 'Lifecycle deployed webhoo 3'
+      pipelineId: '6716ee061897917c1bf1ab5c'
+      trigger: 'deploy-lfc'
+      env:
+        branch: 'main'   
+        ENV: 'lifecycle'
+    - state: 'deployed'
+      type: 'codefresh'
+      name: 'lfc: deployed new 4'
+      description: 'new Lifecycle deployed webhook 4'
+      pipelineId: '6716ee061897917c1bf1ab5c'
+      trigger: 'deploy-lfc'
+      env:
+        branch: 'main'   
+        ENV: 'lifecycle'
+        NEW: 'true'
     
 services:
   - name: "backend-svc"
