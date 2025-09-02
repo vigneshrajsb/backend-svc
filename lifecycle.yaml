@@ -5,7 +5,6 @@ environment:
   autoDeploy: true
   defaultServices:
     - name: 'backend-cache'
-    - name: 'backend-svc'
     - name: 'aurora-db'
   webhooks:
     - state: 'deployed'
