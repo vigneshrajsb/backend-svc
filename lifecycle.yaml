@@ -6,6 +6,7 @@ environment:
   defaultServices:
     - name: 'backend-cache'
     - name: 'backend-svc'
+    - name: 'aurora-db'
   webhooks:
     - state: 'deployed'
       type: 'codefresh'
@@ -50,3 +51,7 @@ services:
           - "master.pdb.create=true"
           - "master.pdb.minAvailable=50%"
           - "master.count=2"
+  - name: "aurora-db"
+    auroraRestore:
+      arguments: "--sourceTagKey restore-for --sourceTagValue db-aurora --appShort db --engineVersion 8.0.mysql_aurora.3.08.2"
+      command: "scripts/aurora-helper.ts"
