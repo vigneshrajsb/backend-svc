@@ -5,7 +5,7 @@ environment:
   autoDeploy: true
   defaultServices:
     - name: 'backend-cache'
-    - nmae: 'backend-svc'
+    - name: 'backend-svc'
     # - name: 'aurora-db'
     - name: 'cf-build'
   webhooks:
