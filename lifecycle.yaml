@@ -5,7 +5,8 @@ environment:
   autoDeploy: true
   defaultServices:
     - name: 'backend-cache'
-    - name: 'aurora-db'
+    - nmae: 'backend-svc'
+    # - name: 'aurora-db'
     - name: 'cf-build'
   webhooks:
     - state: 'deployed'
@@ -53,10 +54,10 @@ services:
           - "master.pdb.create=true"
           - "master.pdb.minAvailable=50%"
           - "master.count=2"
-  - name: "aurora-db"
-    auroraRestore:
-      arguments: "--sourceTagKey restore-for --sourceTagValue db-aurora --appShort db --engineVersion 8.0.mysql_aurora.3.08.2"
-      command: "scripts/aurora-helper.ts"
+  # - name: "aurora-db"
+  #   auroraRestore:
+  #     arguments: "--sourceTagKey restore-for --sourceTagValue db-aurora --appShort db --engineVersion 8.0.mysql_aurora.3.08.2"
+  #     command: "scripts/aurora-helper.ts"
   - name: 'cf-build'
     defaultUUID: 'good-dev-0'
     codefresh:
