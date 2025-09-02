@@ -5,7 +5,8 @@ environment:
   autoDeploy: true
   defaultServices:
     - name: 'backend-cache'
-    - name: 'backend-svc'
+    - name: 'aurora-db'
+    - name: 'cf-build'
   webhooks:
     - state: 'deployed'
       type: 'codefresh'
@@ -29,6 +30,8 @@ services:
           - 'sysops/helm/common.yaml'
           - 'sysops/helm/lfc/service/grpc-service.yaml'
       docker:
+        builder:
+          engine: 'buildkit'
         defaultTag: "main"
         app:
           dockerfilePath: "backend-svc/Dockerfile"
@@ -50,3 +53,22 @@ services:
           - "master.pdb.create=true"
           - "master.pdb.minAvailable=50%"
           - "master.count=2"
+  - name: "aurora-db"
+    auroraRestore:
+      arguments: "--sourceTagKey restore-for --sourceTagValue db-aurora --appShort db --engineVersion 8.0.mysql_aurora.3.08.2"
+      command: "scripts/aurora-helper.ts"
+  - name: 'cf-build'
+    defaultUUID: 'good-dev-0'
+    codefresh:
+      repository: 'vigneshrajsb/lc-test'
+      branchName: 'main'
+      env:
+        UUID: '{{cf-build_UUID}}'
+      deploy:
+        pipelineId: '6716ee061897917c1bf1ab5c'
+        trigger: 'deploy-lfc'
+      destroy:
+        pipelineId: '6716ee4c49599aeeb280b84a'
+        trigger: 'destroy-lfc'
+      deployment:
+        public: false
