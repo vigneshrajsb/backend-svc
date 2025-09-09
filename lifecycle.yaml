@@ -5,6 +5,7 @@ environment:
   autoDeploy: true
   defaultServices:
     - name: 'backend-cache'
+  optionalServices:
     - name: 'backend-svc'
   webhooks:
     - state: 'deployed'
