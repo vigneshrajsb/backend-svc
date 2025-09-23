@@ -30,6 +30,8 @@ services:
           - 'sysops/helm/lfc/service/grpc-service.yaml'
       docker:
         defaultTag: "main"
+        builder:
+          engine: "buildkit"
         app:
           dockerfilePath: "backend-svc/Dockerfile"
           ports:
