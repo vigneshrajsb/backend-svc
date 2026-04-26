@@ -4,49 +4,12 @@ version: '1.0.0'
 environment:
   autoDeploy: true
   defaultServices:
-    - name: 'backend-cache'
-    - name: 'backend-svc'
-  webhooks:
-    - state: 'deployed'
-      type: 'codefresh'
-      name: 'lfc: deployed'
-      description: 'Lifecycle deployed webhook'
-      pipelineId: '6716ee061897917c1bf1ab5c'
-      trigger: 'deploy-lfc'
-      env:
-        branch: 'main'   
-        ENV: 'lifecycle'
-    
-services:
-  - name: "backend-svc"
-    helm:
-      repository: "vigneshrajsb/backend-svc"
-      branchName: "main"
-      grpc: true
-      chart:
-        name: 'goodrx-app'
-        valueFiles:
-          - 'sysops/helm/common.yaml'
-          - 'sysops/helm/lfc/service/grpc-service.yaml'
-      docker:
-        defaultTag: "main"
-        app:
-          dockerfilePath: "backend-svc/Dockerfile"
-          ports:
-            - 8080
-          env:
-            COMPONENT: "app"
-            ENV: "lifecycle"
+    - name: 'cache'
+      repository: 'vigneshrajsb/lifecycle-examples'
+      branch: 'main'
 
-  - name: "backend-cache"
-    helm:
-      repository: "vigneshrajsb/backend-svc"
-      branchName: "main"
-      chart:
-        name: "redis"
-        version: 20.3.0
-        repoUrl: "https://charts.bitnami.com/bitnami"
-        values:
-          - "master.pdb.create=true"
-          - "master.pdb.minAvailable=50%"
-          - "master.count=2"
+services:
+  - name: 'backend-svc-placeholder'
+    docker:
+      dockerImage: 'busybox'
+      defaultTag: '1.36'
