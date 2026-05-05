@@ -29,6 +29,8 @@ environment:
         ENV: lifecycle
 services:
   - name: backend-svc
+    requires:
+      - name: backend-svc-required
     helm:
       repository: vigneshrajsb/backend-svc
       branchName: main
@@ -47,6 +49,16 @@ services:
           env:
             COMPONENT: app
             ENV: lifecycle
+  - name: backend-svc-required
+    helm:
+      repository: vigneshrajsb/backend-svc
+      branchName: main
+      chart:
+        name: redis
+        version: 20.3.0
+        repoUrl: https://charts.bitnami.com/bitnami
+        values:
+          - master.count=1
   - name: backend-cache
     helm:
       repository: vigneshrajsb/backend-svc
