@@ -34,8 +34,6 @@ services:
           env:
             COMPONENT: app
             ENV: lifecycle
-    requires:
-      - name: backend-svc-required-renamed
   - name: backend-cache
     helm:
       repository: vigneshrajsb/backend-svc
@@ -48,14 +46,3 @@ services:
           - master.pdb.create=true
           - master.pdb.minAvailable=50%
           - master.count=2
-  - name: backend-svc-required-renamed
-    helm:
-      repository: vigneshrajsb/backend-svc
-      branchName: main
-      chart:
-        name: redis
-        version: 20.3.0
-        repoUrl: https://charts.bitnami.com/bitnami
-        values:
-          - master.pdb.create=true
-          - master.pdb.minAvailable=50%
