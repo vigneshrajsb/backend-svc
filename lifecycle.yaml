@@ -6,6 +6,19 @@ environment:
   defaultServices:
     - name: 'backend-cache'
     - name: 'backend-svc'
+    - name: 'frontend'
+      repository: 'vigneshrajsb/lifecycle-examples'
+      branch: 'codex/lfc-remote-config-fixture'
+    - name: 'backend'
+      repository: 'vigneshrajsb/lifecycle-examples'
+      branch: 'codex/lfc-remote-config-fixture'
+    - name: 'remote-fixture-a'
+      repository: 'vigneshrajsb/lifecycle-examples'
+      branch: 'codex/lfc-remote-config-fixture'
+  optionalServices:
+    - name: 'cache'
+      repository: 'vigneshrajsb/lifecycle-examples'
+      branch: 'codex/lfc-remote-config-fixture'
   webhooks:
     - state: 'deployed'
       type: 'codefresh'
