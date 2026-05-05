@@ -1,52 +1,61 @@
----
-version: '1.0.0'
-
+version: 1.0.0
 environment:
   autoDeploy: true
   defaultServices:
-    - name: 'backend-cache'
-    - name: 'backend-svc'
+    - name: backend-cache
+    - name: backend-svc
+    - name: frontend
+      repository: vigneshrajsb/lifecycle-examples
+      branch: codex/lfc-remote-config-fixture
+    - name: backend
+      repository: vigneshrajsb/lifecycle-examples
+      branch: codex/lfc-remote-config-fixture
+    - name: remote-fixture-a
+      repository: vigneshrajsb/lifecycle-examples
+      branch: codex/lfc-remote-config-fixture
+  optionalServices:
+    - name: cache
+      repository: vigneshrajsb/lifecycle-examples
+      branch: codex/lfc-remote-config-fixture
   webhooks:
-    - state: 'deployed'
-      type: 'codefresh'
+    - state: deployed
+      type: codefresh
       name: 'lfc: deployed'
-      description: 'Lifecycle deployed webhook'
-      pipelineId: '6716ee061897917c1bf1ab5c'
-      trigger: 'deploy-lfc'
+      description: Lifecycle deployed webhook
+      pipelineId: 6716ee061897917c1bf1ab5c
+      trigger: deploy-lfc
       env:
-        branch: 'main'   
-        ENV: 'lifecycle'
-    
+        branch: main
+        ENV: lifecycle
 services:
-  - name: "backend-svc"
+  - name: backend-svc
     helm:
-      repository: "vigneshrajsb/backend-svc"
-      branchName: "main"
+      repository: vigneshrajsb/backend-svc
+      branchName: main
       grpc: true
       chart:
-        name: 'goodrx-app'
+        name: goodrx-app
         valueFiles:
-          - 'sysops/helm/common.yaml'
-          - 'sysops/helm/lfc/service/grpc-service.yaml'
+          - sysops/helm/common.yaml
+          - sysops/helm/lfc/service/grpc-service.yaml
       docker:
-        defaultTag: "main"
+        defaultTag: main
         app:
-          dockerfilePath: "backend-svc/Dockerfile"
+          dockerfilePath: backend-svc/Dockerfile
           ports:
             - 8080
           env:
-            COMPONENT: "app"
-            ENV: "lifecycle"
-
-  - name: "backend-cache"
+            COMPONENT: app
+            ENV: lifecycle
+  - name: backend-cache
     helm:
-      repository: "vigneshrajsb/backend-svc"
-      branchName: "main"
+      repository: vigneshrajsb/backend-svc
+      branchName: main
       chart:
-        name: "redis"
+        name: redis
         version: 20.3.0
-        repoUrl: "https://charts.bitnami.com/bitnami"
+        repoUrl: https://charts.bitnami.com/bitnami
         values:
-          - "master.pdb.create=true"
-          - "master.pdb.minAvailable=50%"
-          - "master.count=2"
+          - master.pdb.create=true
+          - master.pdb.minAvailable=50%
+          - master.count=2
