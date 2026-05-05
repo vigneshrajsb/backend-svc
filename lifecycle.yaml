@@ -30,7 +30,7 @@ environment:
 services:
   - name: backend-svc
     requires:
-      - name: backend-svc-required
+      - name: backend-svc-required-renamed
     helm:
       repository: vigneshrajsb/backend-svc
       branchName: main
@@ -49,7 +49,7 @@ services:
           env:
             COMPONENT: app
             ENV: lifecycle
-  - name: backend-svc-required
+  - name: backend-svc-required-renamed
     helm:
       repository: vigneshrajsb/backend-svc
       branchName: main
